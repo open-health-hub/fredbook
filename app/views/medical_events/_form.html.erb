@@ -1,33 +1,28 @@
-<%= form_for(@medical_event) do |f| %>
-  <% if @medical_event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@medical_event.errors.count, "error") %> prohibited this medical_event from being saved:</h2>
-
-      <ul>
-      <% @medical_event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @medical_event, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div class="form-group">
+    <%= f.label :summary, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :summary, :class => 'text-field form-control' %>
     </div>
-  <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_area :description, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :occurred_at, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.datetime_select :occurred_at, :class => 'text-field form-control' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :summary %><br>
-    <%= f.text_field :summary %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :occurred_at %><br>
-    <%= f.datetime_select :occurred_at %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  medical_events_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

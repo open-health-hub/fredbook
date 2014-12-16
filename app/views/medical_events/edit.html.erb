@@ -1,6 +1,5 @@
-<h1>Editing medical_event</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @medical_event %> |
-<%= link_to 'Back', medical_events_path %>
+<%- model_class = MedicalEvent -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => MedicalEvent %></h1>
+</div>
+<%= render :partial => 'form' %>
