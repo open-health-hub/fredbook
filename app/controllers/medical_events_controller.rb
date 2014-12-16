@@ -29,6 +29,7 @@ class MedicalEventsController < ApplicationController
   # POST /medical_events.json
   def create
     @medical_event = MedicalEvent.new(medical_event_params)
+    @medical_event.user = current_user
 
     respond_to do |format|
       if @medical_event.save
