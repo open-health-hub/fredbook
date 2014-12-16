@@ -1,6 +1,5 @@
-<h1>Editing preference</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @preference %> |
-<%= link_to 'Back', preferences_path %>
+<%- model_class = Preference -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => Preference %></h1>
+</div>
+<%= render :partial => 'form' %>

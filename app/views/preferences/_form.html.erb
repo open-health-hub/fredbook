@@ -1,21 +1,16 @@
-<%= form_for(@preference) do |f| %>
-  <% if @preference.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@preference.errors.count, "error") %> prohibited this preference from being saved:</h2>
-
-      <ul>
-      <% @preference.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @preference, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div class="form-group">
+    <%= f.label :care_data_privacty_setting, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.number_field :care_data_privacty_setting, :class => 'text-field form-control' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :care_data_privacty_setting %><br>
-    <%= f.number_field :care_data_privacty_setting %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  preferences_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

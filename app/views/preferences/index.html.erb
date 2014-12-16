@@ -1,25 +1,36 @@
-<h1>Listing preferences</h1>
-
-<table>
+<%- model_class = Preference -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Preference %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Care data privacty setting</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:care_data_privacty_setting) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @preferences.each do |preference| %>
       <tr>
+        <td><%= preference.id %></td>
         <td><%= preference.care_data_privacty_setting %></td>
-        <td><%= link_to 'Show', preference %></td>
-        <td><%= link_to 'Edit', edit_preference_path(preference) %></td>
-        <td><%= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l preference.created_at, format: :long %></td>
+        <td>
+          <%= link_to preference_path(preference), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to preference_path(preference), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Preference', new_preference_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_preference_path,
+            :class => 'btn btn-primary' %>
