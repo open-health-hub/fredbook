@@ -1,7 +1,12 @@
 <%- model_class = MedicalEvent -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => MedicalEvent %></h1>
+  <h1><%=t '.title', :default => "Your Medical Event Timeline" %></h1>
 </div>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_medical_event_path,
+            :class => 'btn btn-primary' %>
+
 <table class="table table-striped">
   <thead>
     <tr>

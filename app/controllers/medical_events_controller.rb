@@ -1,14 +1,13 @@
 class MedicalEventsController < ApplicationController
 
-  #->Prelang (scaffolding:rails/scope_to_user)
-  before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy]
+  before_filter :require_user_signed_in
 
   before_action :set_medical_event, only: [:show, :edit, :update, :destroy]
 
   # GET /medical_events
   # GET /medical_events.json
   def index
-    @medical_events = MedicalEvent.all
+    @medical_events = current_user.medical_events
   end
 
   # GET /medical_events/1
@@ -68,12 +67,19 @@ class MedicalEventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_medical_event
-      @medical_event = MedicalEvent.find(params[:id])
+
+    def set_medical_event      
+      # We need to scope this to the current_user so that other users cannot access their events.
+      begin
+        @medical_event = current_user.medical_events.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => not_users_record_exception
+        Rails.logger.error "Current User: #{current_user.email} is attempting to access someone elses record - MedicalEvent: #{params[:id]}"
+        redirect_to :root, notice: 'You do not have permission to access that.'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medical_event_params
-      params.require(:medical_event).permit(:summary, :description, :occurred_at, :user_id)
+      params.require(:medical_event).permit(:summary, :description, :occurred_at)
     end
 end

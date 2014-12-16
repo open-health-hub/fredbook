@@ -1,12 +1,12 @@
 <%- model_class = Preference -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => Preference %></h1>
+  <h1><%=t '.title', :default => "Your Preferences" %></h1>
 </div>
 
 <div class="fieldset">
   <dl>
       <dt class="label label-default"><%= model_class.human_attribute_name(:care_data_privacty_setting) %></dt>
-      <dd><pre class="prettyprint"><%= @preference.care_data_privacty_setting %></pre></dd>
+      <dd><pre class="prettyprint"><%= Preference::CARE_DATA_SETTING_VALUES[ @preference.care_data_privacty_setting ] %></pre></dd>
   </dl>
 </div>
 

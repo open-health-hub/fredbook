@@ -1,16 +1,22 @@
 class PreferencesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_preference, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /preferences
   # GET /preferences.json
   def index
-    @preferences = Preference.all
+    if current_user.preference
+      @preference = current_user.preference
+      render :edit      
+    else #First use, so let's redirect to new
+      redirect_to new_preference_path
+    end
   end
 
   # GET /preferences/1
   # GET /preferences/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /preferences/new
   def new
@@ -25,6 +31,7 @@ class PreferencesController < ApplicationController
   # POST /preferences.json
   def create
     @preference = Preference.new(preference_params)
+    @preference.user = current_user
 
     respond_to do |format|
       if @preference.save
@@ -35,6 +42,7 @@ class PreferencesController < ApplicationController
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /preferences/1
@@ -54,7 +62,9 @@ class PreferencesController < ApplicationController
   # DELETE /preferences/1
   # DELETE /preferences/1.json
   def destroy
-    @preference.destroy
+    #TODO-IM: I'm assuming that it should not be possible for a user to remove their preference altogether.
+    #@preference.destroy
+
     respond_to do |format|
       format.html { redirect_to preferences_url, notice: 'Preference was successfully destroyed.' }
       format.json { head :no_content }
@@ -63,8 +73,10 @@ class PreferencesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_preference
-      @preference = Preference.find(params[:id])
+      # We need to scope this to the current user's preference
+      @preference = current_user.preference
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
