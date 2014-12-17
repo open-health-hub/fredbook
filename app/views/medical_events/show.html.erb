@@ -5,12 +5,20 @@
 
 <div class="fieldset">
   <dl>
-      <dt class="label label-default"><%= model_class.human_attribute_name(:summary) %></dt>
-      <dd><pre class="prettyprint"><%= @medical_event.summary %></pre></dd>
-      <dt class="label label-default"><%= model_class.human_attribute_name(:description) %></dt>
-      <dd><pre class="prettyprint"><%= @medical_event.description %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:id) %></dt>
+      <dd><pre class="prettyprint"><%= @medical_event.id %></pre></dd>
+
       <dt class="label label-default"><%= model_class.human_attribute_name(:occurred_at) %></dt>
       <dd><pre class="prettyprint"><%= @medical_event.occurred_at %></pre></dd>
+
+      <dt class="label label-default"><%= model_class.human_attribute_name(:summary) %></dt>
+      <dd><pre class="prettyprint"><%= @medical_event.summary %></pre></dd>
+
+      <dt class="label label-default"><%= model_class.human_attribute_name(:description) %></dt>
+      <dd><pre class="prettyprint"><%= @medical_event.description %></pre></dd>
+
+      <dt class="label label-default"><%= model_class.human_attribute_name(:created_at) %></dt>
+      <dd><pre class="prettyprint"><%= @medical_event.occurred_at %></pre></dd>      
   </dl>
 </div>
 

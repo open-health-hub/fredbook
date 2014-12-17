@@ -1,11 +1,17 @@
 <%= form_for @preference, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  
   <div class="form-group">
-    <%= f.label :care_data_privacty_setting, :class => 'control-label col-md-2' %>
-    <% Preference::CARE_DATA_SETTING_VALUES.each do |index, value| %>
-      <%= value %>
-    <% end %>
-    <div class="col-md-10">
-      <%= f.number_field :care_data_privacty_setting, :class => 'text-field form-control' %>
+    <div class="col-md-10">        
+
+    <ul>
+      <% Preference::CARE_DATA_SETTING_VALUES.each do |index, value| %>
+        <li>
+          <%= f.radio_button( :care_data_privacty_setting, index ) %>    
+          <%= f.label( "care_data_privacty_setting", value ) %>
+        </li>
+      <% end %>
+    </ul>
+
     </div>
   </div>
 
@@ -16,4 +22,5 @@
                   preferences_path, :class => 'btn btn-default' %>
     </div>
   </div>
+
 <% end %>
