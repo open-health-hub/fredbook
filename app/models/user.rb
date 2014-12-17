@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :medical_events
   has_one :preference
+  has_one :user_detail
 end

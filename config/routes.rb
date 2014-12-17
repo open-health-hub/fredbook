@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_details
+
   resources :medical_events
 
   resources :preferences

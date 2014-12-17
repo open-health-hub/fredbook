@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user_detail.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user_detail.last_name %>
+</p>
+
+<p>
+  <strong>Needs:</strong>
+  <%= @user_detail.needs %>
+</p>
+
+<p>
+  <strong>Carers:</strong>
+  <%= @user_detail.carers %>
+</p>
+
+<p>
+  <strong>Cares for:</strong>
+  <%= @user_detail.cares_for %>
+</p>
+
+<%= link_to 'Edit', edit_user_detail_path(@user_detail) %>

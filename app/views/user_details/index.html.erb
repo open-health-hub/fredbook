@@ -1,0 +1,34 @@
+<h1>Listing user_details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Needs</th>
+      <th>Carers</th>
+      <th>Cares for</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_details.each do |user_detail| %>
+      <tr>
+        <td><%= user_detail.first_name %></td>
+        <td><%= user_detail.last_name %></td>
+        <td><%= user_detail.needs %></td>
+        <td><%= user_detail.carers %></td>
+        <td><%= user_detail.cares_for %></td>
+        <td><%= user_detail.user_id %></td>
+        <td><%= link_to 'Show', user_detail %></td>
+        <td><%= link_to 'Edit', edit_user_detail_path(user_detail) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User detail', new_user_detail_path %>

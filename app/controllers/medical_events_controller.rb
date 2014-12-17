@@ -7,7 +7,7 @@ class MedicalEventsController < ApplicationController
   # GET /medical_events
   # GET /medical_events.json
   def index
-    @medical_events = current_user.medical_events
+    @medical_events = current_user.medical_events.order(occurred_at: :desc)
   end
 
   # GET /medical_events/1
