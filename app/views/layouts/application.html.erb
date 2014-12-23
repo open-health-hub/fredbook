@@ -8,11 +8,26 @@
 <!-- Prelang: Analytics / Google Analytics -->
     <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/></head>
 <body>
-<%= render partial: "elements/navbar" %>
-<%= bootstrap_flash %>
+	<%= render partial: "navbar" %>
+	<%= bootstrap_flash %>
 
+	<div class="container">
 
-<%= yield %>
+	<div class="row">
+  	<div class="col-md-2">
+  		<%= render partial: "left_column" %>
+  	</div>
+  	
+  	<div class="col-md-8">
+  			<%= yield %>  	
+  	</div>
+
+  	<div class="col-md-2">
+  		<%= render partial: "right_column" %>
+  	</div>
+	</div>
+  
+	</div>
 
 </body>
 </html>

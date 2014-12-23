@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+
   resources :user_details
-
   resources :medical_events
-
   resources :preferences
+
+  get 'horizontal' => 'medical_events#horizontal', as: :horizontal
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
   # The priority is based upon order of creation: first created -> highest priority.

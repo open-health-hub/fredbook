@@ -10,6 +10,13 @@ class MedicalEventsController < ApplicationController
     @medical_events = current_user.medical_events.order(occurred_at: :desc)
   end
 
+  def horizontal
+    # An experiment to see how the time would look in a 
+    @medical_events = current_user.medical_events.order(occurred_at: :desc)
+
+    render :layout => 'main'
+  end
+
   # GET /medical_events/1
   # GET /medical_events/1.json
   def show
