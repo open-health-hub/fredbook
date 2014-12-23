@@ -6,6 +6,11 @@ Rails.application.routes.draw do
 
   get 'horizontal' => 'medical_events#horizontal', as: :horizontal
 
+  # Left hand navigation indication urls
+  get 'appointments' => 'landings#appointments', as: :appointments
+  get 'prescriptions' => 'landings#prescriptions', as: :prescriptions
+  get 'conditions' => 'landings#conditions', as: :conditions
+
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

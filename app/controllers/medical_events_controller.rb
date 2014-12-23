@@ -12,7 +12,7 @@ class MedicalEventsController < ApplicationController
 
   def horizontal
     # An experiment to see how the time would look in a 
-    @medical_events = current_user.medical_events.order(occurred_at: :desc)
+    @medical_events = current_user.medical_events.order(id: :asc)
 
     render :layout => 'main'
   end

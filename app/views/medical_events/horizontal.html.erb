@@ -3,3 +3,26 @@
 <p>
  	Here we will trial out the horizontal timeline.
 </p>
+
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var data = new vis.DataSet([
+    {id: 1, content: 'item 1', start: '2014-12-12'},
+    {id: 2, content: 'item 2', start: '2014-12-14'},
+    <% @medical_events.each do |medical_event| %>
+        { id: <%= medical_event.id.to_s %>, content: '<%= medical_event.summary %>', start: '<%= medical_event.occurred_at.strftime("%F") %>' },
+    <% end %>
+    {id: 60, content: 'item 6', start: '2014-12-29'}
+  ]);
+
+    // Configuration for the Timeline
+  var options = {};
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, data, options);
+</script>

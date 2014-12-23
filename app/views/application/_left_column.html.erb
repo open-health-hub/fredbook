@@ -1,7 +1,18 @@
+app/views/application/_right_column.html.erb
+<% # a 2 cell width navigation area included from application.html.erb %>
 
-Appointments
+<ul class="list-unstyled">
+  
+	<li><%= link_to t('.new', :default => t("appointments")),
+	            appointments_path,
+	            :class => 'btn btn-primary' %></li>
 
-Prescriptions
 
-Conditions
+	<li><%= link_to t('.new', :default => t("prescriptions")),
+	            prescriptions_path,
+	            :class => 'btn btn-primary' %></li>
 
+	<li><%= link_to t('.new', :default => t("conditions")),
+	            conditions_path,
+	            :class => 'btn btn-primary' %></li>
+</ul>          

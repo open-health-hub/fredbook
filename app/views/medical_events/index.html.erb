@@ -3,29 +3,25 @@
   <h1><%=t '.title', :default => "Your Medical Event Timeline" %></h1>
 </div>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to t('.new', :default => t("new_medical_event")),
             new_medical_event_path,
             :class => 'btn btn-primary' %>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <!--<th>Event ID</th>-->
       <th><%= model_class.human_attribute_name(:occurred_at) %></th>
       <th><%= model_class.human_attribute_name(:summary) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>      
-      <!--<th><%= model_class.human_attribute_name(:created_at) %></th>-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @medical_events.each do |medical_event| %>
       <tr>
-        <!--<td><%= medical_event.id %></td>-->
         <td><%=l medical_event.occurred_at, format: :long %></td>
         <td><%= medical_event.summary %></td>
         <td><%= medical_event.description %></td>        
-        <!--<td><%=l medical_event.created_at, format: :long %></td> -->
         <td>
           <%= link_to medical_event_path(medical_event), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
             <%= glyph 'info-sign' %>
@@ -40,6 +36,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to t('.new', :default => t("new_medical_event")),
             new_medical_event_path,
             :class => 'btn btn-primary' %>
